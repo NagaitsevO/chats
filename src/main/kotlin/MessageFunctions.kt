@@ -13,30 +13,37 @@ object MessageFunctions {
                 100,
                 false)
         messageBufferID++
-        messages.set(message.messageID, message)
+        messages.add(message)
         return message.messageID
     }
 
     fun readMessage(message: Message,
-                    messages: MutableList<Message>) {
+                    messages: List<Message>) {
         message.isRead = true
     }
 
-    fun toString(messages: ArrayList<Message>): String {
+    fun toString(messages: List<Message>): String {
         val messagesPrintOut = StringBuilder()
         for (message in messages) {
             messagesPrintOut.append("Отправитель: ")
             messagesPrintOut.append(message.receivedUser.userName)
-            messagesPrintOut.append("//n")
+            messagesPrintOut.append("\n")
             messagesPrintOut.append("Получатель: ")
             messagesPrintOut.append(message.transmittedUser.userName)
-            messagesPrintOut.append("//n")
+            messagesPrintOut.append("\n")
             messagesPrintOut.append("Сообщение: ")
             messagesPrintOut.append(message.text)
-            messagesPrintOut.append("//n")
+            messagesPrintOut.append("\n")
+            readMessage(message, messages)
         }
         return messagesPrintOut.toString()
     }
 
+    fun toShowTheChat(user1: User, user2: User, messages: MutableList<Message>): String {
+        val theFoundChat = messages.filter(fun(message: Message) =
+                ((message.receivedUser == user1) || (message.receivedUser == user2) &&
+                        (message.transmittedUser == user2) || (message.transmittedUser == user1)))
+        return toString(theFoundChat)
+    }
 
 }

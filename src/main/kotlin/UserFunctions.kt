@@ -42,7 +42,7 @@ object UserFunctions {
         return false
     }
 
-    fun userName(user: User): String {
+    fun getUserName(user: User): String {
         return user.userName
     }
 
