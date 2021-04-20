@@ -22,22 +22,24 @@ object MessageFunctions {
         message.isRead = true
     }
 
-    fun toString(messages: List<Message>): String {
-        val messagesPrintOut = StringBuilder()
-        for (message in messages) {
-            messagesPrintOut.append("Отправитель: ")
-            messagesPrintOut.append(message.receivedUser.userName)
-            messagesPrintOut.append("\n")
-            messagesPrintOut.append("Получатель: ")
-            messagesPrintOut.append(message.transmittedUser.userName)
-            messagesPrintOut.append("\n")
-            messagesPrintOut.append("Сообщение: ")
-            messagesPrintOut.append(message.text)
-            messagesPrintOut.append("\n")
-            readMessage(message, messages)
-        }
-        return messagesPrintOut.toString()
-    }
+    fun toString(messages: List<Message>): String =
+            messages.joinToString(
+                    separator = "\n",
+                    prefix = "===",
+                    postfix = "======\n"
+            ) { message ->
+
+                readMessage(message, messages)
+
+                """
+
+                Отправитель: ${message.receivedUser.userName}
+                Получатель: ${message.transmittedUser.userName}
+                Сообщение: ${message.text}
+
+            """.trimIndent()
+
+            }
 
     fun toShowTheChat(user1: User, user2: User, messages: MutableList<Message>): String {
         val theFoundChat = messages.filter(fun(message: Message) =
@@ -45,5 +47,4 @@ object MessageFunctions {
                         (message.transmittedUser == user2) || (message.transmittedUser == user1)))
         return toString(theFoundChat)
     }
-
 }

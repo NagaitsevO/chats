@@ -1,5 +1,3 @@
-import java.lang.reflect.Array.get
-
 object UserFunctions {
     private var userBufferID: Int = 1
 
@@ -7,25 +5,19 @@ object UserFunctions {
         if (!isEmailInArrayOfUsers(users, email)) {
             val user = User(userBufferID, userName, email)
             users.add(user)
-            return userBufferID
             userBufferID++
+            return userBufferID
         }
         return 0
     }
 
-    fun isEmailInArrayOfUsers(users: MutableCollection<User>, testedEmail: String): Boolean {
-        for (user in users) {
-            if (user.email == testedEmail) {
-                return true
-            }
-        }
-        return false
-    }
+    fun isEmailInArrayOfUsers(users: MutableCollection<User>, testedEmail: String):
+            Boolean = users.any { it.email == testedEmail }
 
     fun changeUserEmail(users: MutableCollection<User>, userID: Int, newEmail: String): Boolean {
-        for (user in users) {
-            if (user.userID == userID) {
-                user.email = newEmail
+        users.forEach {
+            if (it.userID == userID) {
+                it.email = newEmail
                 return true
             }
         }
@@ -33,9 +25,9 @@ object UserFunctions {
     }
 
     fun changeUserName(users: MutableCollection<User>, userID: Int, newName: String): Boolean {
-        for (user in users) {
-            if (user.userID == userID) {
-                user.userName = newName
+        users.forEach {
+            if (it.userID == userID) {
+                it.userName = newName
                 return true
             }
         }
