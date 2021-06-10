@@ -1,11 +1,11 @@
 object MessageFunctions {
-    private var messageBufferID = 1
+    private var messageBufferID: Int = 0
 
     fun sendMessage(transmittedUser: User,
                     receivedUser: User,
                     text: String,
                     messages: MutableList<Message>): Int {
-        val message = Message(
+        var message = Message(
                 messageBufferID,
                 transmittedUser,
                 receivedUser,

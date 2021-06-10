@@ -9,4 +9,8 @@ fun main() {
     println(MessageFunctions.toString(messages))
     println(MessageFunctions.toShowTheChat(users[0], users[1], messages))
 
+    val isEmail = UserFunctions.isEmailInArrayOfUsers(users, "email2@email.ru")
+    println(isEmail)
+    println(users)
+
 }

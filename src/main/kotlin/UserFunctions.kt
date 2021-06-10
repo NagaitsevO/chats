@@ -1,12 +1,12 @@
 object UserFunctions {
-    private var userBufferID: Int = 1
+    private var userBufferID: Int = 0
 
     fun createUser(userName: String, email: String, users: MutableCollection<User>): Int {
         if (!isEmailInArrayOfUsers(users, email)) {
             val user = User(userBufferID, userName, email)
             users.add(user)
             userBufferID++
-            return userBufferID
+            return user.userID
         }
         return 0
     }
