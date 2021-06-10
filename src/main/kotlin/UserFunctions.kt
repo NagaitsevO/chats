@@ -38,7 +38,10 @@ object UserFunctions {
         return user.userName
     }
 
-
+    fun toCleanUserBufferID(): Boolean {
+        userBufferID = 0
+        return true
+    }
 
 
 

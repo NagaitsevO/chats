@@ -47,4 +47,9 @@ object MessageFunctions {
                         (message.transmittedUser == user2) || (message.transmittedUser == user1)))
         return toString(theFoundChat)
     }
+
+    fun toCleanMessageBufferID(): Boolean {
+        messageBufferID = 0
+        return true
+    }
 }
